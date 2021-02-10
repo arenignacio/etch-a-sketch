@@ -36,12 +36,17 @@
 const generateGrid = (col, row) => {
 	const newArr = new Array(col);
 
-	for (let i = 0; i <= col - 1; i++) {
-		newArr[i] = new Array(row);
-	}
-
-	return newArr;
+	return newArr.fill(0).map(() => {
+		return Array(row).fill(0);
+	});
 };
 
-const grid = generateGrid(10, 16);
+const grid = generateGrid(12, 16);
 console.log(grid);
+
+/* 
+const a = Array(5)
+	.fill(0)
+	.map((x) => Array(10).fill(0));
+
+console.log(a); */
