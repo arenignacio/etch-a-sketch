@@ -1,3 +1,5 @@
+import generateGrid from './_generateGrid.js';
+
 /* 
 
     Follow the instructions atop Odin’s Google Homepage project to setup a git repository for this project.
@@ -33,16 +35,23 @@
  */
 
 //create 16x16 grid square of divs
-const generateGrid = (col, row) => {
-	const newArr = new Array(col);
 
-	return newArr.fill(0).map(() => {
-		return Array(row).fill(0);
-	});
-};
+const container = document.querySelector('.grid-container');
 
-const grid = generateGrid(12, 16);
+const grid = generateGrid(30, 16, container);
 console.log(grid);
+
+let td = document.getElementsByTagName('td');
+
+for (let cell of td) {
+	cell.addEventListener('mouseover', (e) => {
+		e.target.style.background = 'gray';
+	});
+}
+
+window.addEventListener('click', (e) => {
+	console.log(e.target);
+});
 
 /* 
 const a = Array(5)

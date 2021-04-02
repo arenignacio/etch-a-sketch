@@ -1,0 +1,25 @@
+.border {
+  border: solid black 0.5px;
+}
+
+.height-1 {
+  height: 20px;
+}
+
+.width-1 {
+  width: 20px;
+}
+
+.collapse {
+  border-collapse: collapse;
+}
+
+.column {
+  border: solid black 0.5px;
+}
+
+.grid-container {
+  display: inline-table;
+  border-collapse: collapse;
+}
+/*# sourceMappingURL=style.css.map */
