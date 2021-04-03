@@ -18,14 +18,15 @@
 	border-collapse: collapse;
 }
 
-.row {
-}
-
-.column {
-	border: solid black 0.5px;
+#body {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 .grid-container {
+	position: relative;
+	top: 70px;
 	display: inline-table;
 	border-collapse: collapse;
 }

@@ -35,19 +35,38 @@ import generateGrid from './_generateGrid.js';
  */
 
 //create 16x16 grid square of divs
+const randomNum = function () {
+	return Math.floor(Math.random() * 360);
+};
 
 const container = document.querySelector('.grid-container');
+const colorModifier = 0.9;
+let gridSize = 16;
+generateGrid(gridSize, gridSize, container);
 
-const grid = generateGrid(30, 16, container);
-console.log(grid);
-
-let td = document.getElementsByTagName('td');
-
-for (let cell of td) {
+document.querySelectorAll('td').forEach((cell) => {
 	cell.addEventListener('mouseover', (e) => {
-		e.target.style.background = 'gray';
+		let bg = e.target.style.backgroundColor;
+
+		if (!bg) {
+			e.target.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
+		} else {
+			let rgb = bg.split('').slice(4, -1).join('').split(', ');
+			e.target.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
+				rgb[1] * colorModifier
+			}, ${rgb[2] * colorModifier})`;
+
+			console.log(rgb);
+			//e.target.style.backgroundColor
+		}
+
+		//#gray or white
+		//e.target.style.background = bg === 'gray' ? 'white' : 'gray';
+
+		//#colorful
+		//e.target.style.background = `rgb(${randomNum()},${randomNum()},${randomNum()}`; */
 	});
-}
+});
 
 window.addEventListener('click', (e) => {
 	console.log(e.target);
