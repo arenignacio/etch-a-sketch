@@ -1,4 +1,4 @@
-const _generateGrid = (col, row, node) => {
+const generateGrid = (col, row, node) => {
 	const containerWidth = 320;
 
 	node.style.width = `${containerWidth}px`;
@@ -24,4 +24,4 @@ const _generateGrid = (col, row, node) => {
 	}
 };
 
-export default _generateGrid;
+export default generateGrid;

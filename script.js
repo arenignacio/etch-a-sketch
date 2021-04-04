@@ -1,4 +1,4 @@
-import generateGrid from './_generateGrid.js';
+import generateGrid from './generateGrid.js';
 
 /* 
 
