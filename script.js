@@ -68,11 +68,11 @@ const mouseOverCB = (e) => {
 const touchOver = (e) => {
 	const touch = e.touches[0];
 	const element = document.elementFromPoint(touch.clientX, touch.clientY);
-	let bg = element.style.backgroundColor;
+	let bg = element === null ? '' : element.style.backgroundColor;
 
-	if (element.classList.contains('cell') && !bg) {
+	if (element !== null && element.classList.contains('cell') && !bg) {
 		element.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
-	} else if (element.classList.contains('cell')) {
+	} else if (element !== null && element.classList.contains('cell')) {
 		let rgb = bg.split('').slice(4, -1).join('').split(', ');
 
 		element.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
