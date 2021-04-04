@@ -68,7 +68,6 @@ const mouseOverCB = (e) => {
 
 document.querySelectorAll('td').forEach((cell) => {
 	cell.addEventListener('mouseover', mouseOverCB);
-	cell.addEventListener('touchstart', mouseOverCB);
 	cell.addEventListener('touchmove', mouseOverCB);
 });
 
