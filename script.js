@@ -62,31 +62,29 @@ const mouseOverCB = (e) => {
 
 	//#colorful
 	//e.target.style.background = `rgb(${randomNum()},${randomNum()},${randomNum()}`; */
+	console.log(e.target);
+};
+
+const touchOver = (e) => {
+	const touch = e.touches[0];
+	const element = document.elementFromPoint(touch.clientX, touch.clientY);
+	let bg = element.style.backgroundColor;
+
+	if (element.classList.contains('cell') && !bg) {
+		element.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
+	} else if (element.classList.contains('cell')) {
+		let rgb = bg.split('').slice(4, -1).join('').split(', ');
+
+		element.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
+			rgb[1] * colorModifier
+		}, ${rgb[2] * colorModifier})`;
+		//e.target.style.backgroundColor
+	}
 };
 
 document.querySelectorAll('td').forEach((cell) => {
 	cell.addEventListener('mouseover', mouseOverCB);
-	cell.addEventListener('touchmove', (e) => {
-		const touch = e.touches[0];
-		const x = touch.clientX;
-		const y = touch.clientY;
-		const element = document.elementFromPoint(x, y);
-		let bg = element.style.backgroundColor;
-
-		if (x <= 720 && x >= 303 && y >= 80 && y <= 497 && !bg) {
-			element.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
-		} else if (x <= 720 && x >= 303 && y >= 80 && y <= 497) {
-			let rgb = bg.split('').slice(4, -1).join('').split(', ');
-
-			element.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
-				rgb[1] * colorModifier
-			}, ${rgb[2] * colorModifier})`;
-
-			console.log(x, y);
-			console.log(element);
-			//e.target.style.backgroundColor
-		}
-	});
+	cell.addEventListener('touchmove', touchOver);
 });
 
 //lower right, 720, 497

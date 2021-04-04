@@ -17,7 +17,7 @@ const generateGrid = (col, row, node) => {
 		for (let j = 1; j <= col; j++) {
 			let col = document.createElement('td');
 			col.id = `x${i}y${j}`;
-			col.classList = 'column  collapse';
+			col.classList = 'cell  collapse';
 
 			row.append(col);
 		}
