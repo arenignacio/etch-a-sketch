@@ -68,7 +68,24 @@ const mouseOverCB = (e) => {
 
 document.querySelectorAll('td').forEach((cell) => {
 	cell.addEventListener('mouseover', mouseOverCB);
-	cell.addEventListener('touchmove', mouseOverCB);
+	cell.addEventListener('touchmove', (e) => {
+		const touch = e.touches[0];
+		const element = document.elementFromPoint(touch.clientX, touch.clientY);
+		let bg = element.style.backgroundColor;
+
+		if (!bg) {
+			element.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
+		} else {
+			let rgb = bg.split('').slice(4, -1).join('').split(', ');
+
+			element.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
+				rgb[1] * colorModifier
+			}, ${rgb[2] * colorModifier})`;
+
+			console.log(rgb);
+			//e.target.style.backgroundColor
+		}
+	});
 });
 
 window.addEventListener('click', (e) => {
