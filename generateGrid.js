@@ -1,5 +1,5 @@
 const generateGrid = (col, row, node) => {
-	const containerWidth = 320;
+	const containerWidth = 420;
 
 	node.style.width = `${containerWidth}px`;
 	node.style.height = `${containerWidth}px`;

@@ -44,28 +44,32 @@ const colorModifier = 0.9;
 let gridSize = 16;
 generateGrid(gridSize, gridSize, container);
 
+const mouseOverCB = (e) => {
+	let bg = e.target.style.backgroundColor;
+
+	if (!bg) {
+		e.target.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
+	} else {
+		let rgb = bg.split('').slice(4, -1).join('').split(', ');
+		e.target.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
+			rgb[1] * colorModifier
+		}, ${rgb[2] * colorModifier})`;
+
+		console.log(rgb);
+		//e.target.style.backgroundColor
+	}
+
+	//#gray or white
+	//e.target.style.background = bg === 'gray' ? 'white' : 'gray';
+
+	//#colorful
+	//e.target.style.background = `rgb(${randomNum()},${randomNum()},${randomNum()}`; */
+};
+
 document.querySelectorAll('td').forEach((cell) => {
-	cell.addEventListener('mouseover', (e) => {
-		let bg = e.target.style.backgroundColor;
-
-		if (!bg) {
-			e.target.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
-		} else {
-			let rgb = bg.split('').slice(4, -1).join('').split(', ');
-			e.target.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
-				rgb[1] * colorModifier
-			}, ${rgb[2] * colorModifier})`;
-
-			console.log(rgb);
-			//e.target.style.backgroundColor
-		}
-
-		//#gray or white
-		//e.target.style.background = bg === 'gray' ? 'white' : 'gray';
-
-		//#colorful
-		//e.target.style.background = `rgb(${randomNum()},${randomNum()},${randomNum()}`; */
-	});
+	cell.addEventListener('mouseover', mouseOverCB);
+	cell.addEventListener('touchstart', mouseOverCB);
+	cell.addEventListener('touchmove', mouseOverCB);
 });
 
 window.addEventListener('click', (e) => {
