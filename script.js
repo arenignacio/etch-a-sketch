@@ -54,8 +54,6 @@ const mouseOverCB = (e) => {
 		e.target.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
 			rgb[1] * colorModifier
 		}, ${rgb[2] * colorModifier})`;
-
-		console.log(rgb);
 		//e.target.style.backgroundColor
 	}
 
@@ -70,23 +68,31 @@ document.querySelectorAll('td').forEach((cell) => {
 	cell.addEventListener('mouseover', mouseOverCB);
 	cell.addEventListener('touchmove', (e) => {
 		const touch = e.touches[0];
-		const element = document.elementFromPoint(touch.clientX, touch.clientY);
+		const x = touch.clientX;
+		const y = touch.clientY;
+		const element = document.elementFromPoint(x, y);
 		let bg = element.style.backgroundColor;
 
-		if (!bg) {
+		if (x <= 720 && x >= 303 && y >= 80 && y <= 497 && !bg) {
 			element.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
-		} else {
+		} else if (x <= 720 && x >= 303 && y >= 80 && y <= 497) {
 			let rgb = bg.split('').slice(4, -1).join('').split(', ');
 
 			element.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
 				rgb[1] * colorModifier
 			}, ${rgb[2] * colorModifier})`;
 
-			console.log(rgb);
+			console.log(x, y);
+			console.log(element);
 			//e.target.style.backgroundColor
 		}
 	});
 });
+
+//lower right, 720, 497
+//lower left, 303, 497
+//upper left, 301 80
+//upper right, 720 80
 
 window.addEventListener('click', (e) => {
 	console.log(e.target);
