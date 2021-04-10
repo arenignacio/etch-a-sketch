@@ -34,22 +34,32 @@ import generateGrid from './generateGrid.js';
 
  */
 
-//create 16x16 grid square of divs
-const randomNum = function () {
-	return Math.floor(Math.random() * 360);
+//#random number generator
+const randomNum = function (max, min = 1) {
+	return Math.floor(Math.random() * (max - min) + min);
 };
 
+//#variables
 const container = document.querySelector('.grid-container');
 const colorModifier = 0.9;
 let gridSize = 16;
-generateGrid(gridSize, gridSize, container);
 
+//#mouse hover function declaration
 const mouseOverCB = (e) => {
 	let bg = e.target.style.backgroundColor;
+	const isCell = e.target.classList.contains('cell');
+	const isTitle =
+		e.target.classList.contains('letter') &&
+		!e.target.classList.contains('changed');
+
+	if (isTitle) {
+		e.target.style.fontSize = `${randomNum(42, 28)}px`;
+		e.target.classList.add('changed');
+	}
 
 	if (!bg) {
-		e.target.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
-	} else {
+		e.target.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
+	} else if (isCell) {
 		let rgb = bg.split('').slice(4, -1).join('').split(', ');
 		e.target.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
 			rgb[1] * colorModifier
@@ -62,16 +72,16 @@ const mouseOverCB = (e) => {
 
 	//#colorful
 	//e.target.style.background = `rgb(${randomNum()},${randomNum()},${randomNum()}`; */
-	console.log(e.target);
 };
 
+//#touch over function declaration
 const touchOver = (e) => {
 	const touch = e.touches[0];
 	const element = document.elementFromPoint(touch.clientX, touch.clientY);
 	let bg = element === null ? '' : element.style.backgroundColor;
 
 	if (element !== null && element.classList.contains('cell') && !bg) {
-		element.style.backgroundColor = `hsl(${randomNum()}, 70%, 50%)`;
+		element.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
 	} else if (element !== null && element.classList.contains('cell')) {
 		let rgb = bg.split('').slice(4, -1).join('').split(', ');
 
@@ -82,15 +92,17 @@ const touchOver = (e) => {
 	}
 };
 
+generateGrid(gridSize, gridSize, container);
+
 document.querySelectorAll('td').forEach((cell) => {
 	cell.addEventListener('mouseover', mouseOverCB);
 	cell.addEventListener('touchmove', touchOver);
 });
 
-//lower right, 720, 497
-//lower left, 303, 497
-//upper left, 301 80
-//upper right, 720 80
+document.querySelectorAll('.letter').forEach((cell) => {
+	cell.addEventListener('mouseover', mouseOverCB);
+	cell.addEventListener('touchmove', touchOver);
+});
 
 window.addEventListener('click', (e) => {
 	console.log(e.target);

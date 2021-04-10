@@ -1,0 +1,63 @@
+.border {
+	border: solid black 0.5px;
+}
+
+.height {
+	&-1 {
+		height: 20px;
+	}
+}
+
+.width {
+	&-1 {
+		width: 20px;
+	}
+}
+
+.collapse {
+	border-collapse: collapse;
+}
+
+#body {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.grid-container {
+	position: relative;
+	margin-top: 10px;
+	display: inline-table;
+	border: black solid 1px;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+}
+
+#title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	height: 100px;
+	width: 420px;
+}
+
+#name {
+	margin-left: 20px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+	letter-spacing: 1px;
+	font-size: 24px;
+	display: inline-block;
+}
+
+#logo {
+	transition: all 0.2s ease-in-out;
+	&:hover {
+		transform: scale(1.2);
+	}
+	display: inline-block;
+	align-self: center;
+}
