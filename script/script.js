@@ -48,13 +48,16 @@ let gridSize = 16;
 const mouseOverCB = (e) => {
 	let bg = e.target.style.backgroundColor;
 	const isCell = e.target.classList.contains('cell');
-	const isTitle =
-		e.target.classList.contains('letter') &&
-		!e.target.classList.contains('changed');
+	const isTitle = e.target.classList.contains('letter');
+	const isChanged = e.target.classList.contains('changed');
 
-	if (isTitle) {
+	//change title size on hover
+	if (isTitle && !isChanged) {
 		e.target.style.fontSize = `${randomNum(42, 28)}px`;
 		e.target.classList.add('changed');
+	} else {
+		e.target.style.fontSize = '24px';
+		e.target.classList.remove('changed');
 	}
 
 	if (!bg) {
@@ -94,11 +97,13 @@ const touchOver = (e) => {
 
 generateGrid(gridSize, gridSize, container);
 
+//event listener for cells
 document.querySelectorAll('td').forEach((cell) => {
 	cell.addEventListener('mouseover', mouseOverCB);
 	cell.addEventListener('touchmove', touchOver);
 });
 
+//event listener for title
 document.querySelectorAll('.letter').forEach((cell) => {
 	cell.addEventListener('mouseover', mouseOverCB);
 	cell.addEventListener('touchmove', touchOver);
@@ -108,9 +113,13 @@ window.addEventListener('click', (e) => {
 	console.log(e.target);
 });
 
-/* 
-const a = Array(5)
-	.fill(0)
-	.map((x) => Array(10).fill(0));
+//event listener for logo
+document.getElementById('pen').addEventListener('click', (e) => {
+	const menu = document.getElementById('menu');
+	const grid = document.querySelector('.grid-container');
 
-console.log(a); */
+	menu.classList.toggle('hide');
+	grid.classList.toggle('blur');
+
+	console.log(grid.classList);
+});

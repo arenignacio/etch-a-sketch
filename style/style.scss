@@ -43,6 +43,10 @@ header {
 	margin-top: 20px;
 	height: 100px;
 	width: 420px;
+
+	&:hover {
+		cursor: pointer;
+	}
 }
 
 #name {
@@ -54,10 +58,98 @@ header {
 }
 
 #logo {
+	position: relative;
+	z-index: 1;
 	transition: all 0.2s ease-in-out;
 	&:hover {
 		transform: scale(1.2);
+		cursor: pointer;
 	}
 	display: inline-block;
 	align-self: center;
+}
+
+.menu-container {
+	display: flex;
+	justify-content: center;
+	height: 40px;
+	filter: opacity(0.9);
+	transition: 5s filter ease-in-out;
+}
+
+#menu {
+	position: relative;
+	bottom: 435px;
+	width: 600px;
+	height: 450px;
+	z-index: 2;
+}
+
+@media only screen and(max-width: 768) {
+	#menu {
+		width: 422px;
+		height: 422px;
+	}
+}
+
+#menu-header {
+	font-size: 60px;
+	color: hsla(360, 80%, 0%, 1);
+	cursor: default;
+	font-weight: 900;
+	letter-spacing: 5px;
+}
+
+.hide {
+	display: none;
+}
+
+.blur {
+	filter: blur(6px);
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+}
+
+#menu-options {
+	font-weight: bold;
+	width: 50%;
+	font-size: 20px;
+	form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
+	}
+}
+
+#menu-info {
+	width: 40%;
+	font-size: 18px;
+}
+
+.menu-body {
+	display: flex;
+	justify-content: space-evenly;
+	margin: 20px 40px 0px 40px;
+}
+
+#select-size {
+	display: flex;
+	flex-direction: column;
+	margin-top: 50px;
+}
+
+#size {
+	margin-top: 15px;
+	margin-left: 15px;
+	width: 100px;
+	height: 30px;
+}
+
+.option {
+	margin-top: 12px;
+	font-size: 18px;
 }

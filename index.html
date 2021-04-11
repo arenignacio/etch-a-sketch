@@ -13,12 +13,13 @@
 			<div id="title-border">
 				<div id="title">
 					<div id="logo">
-						<object
-							data="img/pen.svg"
-							type="image/svg+xml"
+						<img
+							src="img/pen.svg"
+							alt="Logo"
+							id="pen"
 							height="50"
 							width="50"
-						></object>
+						/>
 					</div>
 					<h2 id="name">
 						<span class="letter">E</span>
@@ -38,7 +39,53 @@
 				</div>
 			</div>
 		</header>
-		<div id="body"><div class="grid-container"></div></div>
+		<div id="body">
+			<div class="grid-container"></div>
+		</div>
+		<div class="menu-container">
+			<div id="menu" class="hide">
+				<div id="menu-header" class="center">Menu</div>
+				<div class="menu-body">
+					<div id="menu-options">
+						<form>
+							<div id="select-mode">
+								<span>Select Mode</span>
+								<div class="option">
+									<input
+										type="radio"
+										name="option"
+										id="option-colored"
+									/><span>Colored</span>
+								</div>
+
+								<div class="option">
+									<input
+										type="radio"
+										name="option"
+										id="option-bnw"
+									/><span>Black & White</span>
+								</div>
+							</div>
+							<div id="select-size">
+								<span>Enter size (max 100)</span>
+								<input type="text" name="size" id="size" />
+							</div>
+						</form>
+					</div>
+
+					<div id="menu-info">
+						<div>
+							<ul>
+								<li>test</li>
+								<li>1</li>
+								<li>2</li>
+								<li>3</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<script type="module" src="script/script.js"></script>
 	</body>
