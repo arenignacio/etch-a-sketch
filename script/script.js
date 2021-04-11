@@ -50,6 +50,7 @@ const mouseOverCB = (e) => {
 	const isCell = e.target.classList.contains('cell');
 	const isTitle = e.target.classList.contains('letter');
 	const isChanged = e.target.classList.contains('changed');
+	const bnwSelected = document.getElementById('option-bnw').checked;
 
 	//change title size on hover
 	if (isTitle && !isChanged) {
@@ -61,7 +62,12 @@ const mouseOverCB = (e) => {
 	}
 
 	if (!bg) {
-		e.target.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
+		if (bnwSelected && isCell) {
+			//triggers if black and white is selected
+			e.target.style.backgroundColor = `hsl(0, 0%, ${randomNum(85, 1)}%)`;
+		} else {
+			e.target.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
+		}
 	} else if (isCell) {
 		let rgb = bg.split('').slice(4, -1).join('').split(', ');
 		e.target.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
@@ -107,18 +113,29 @@ const touchOver = (e) => {
 	}
 };
 
+const removeCellListeners = () => {
+	document.querySelectorAll('td').forEach((cell) => {
+		cell.removeEventListener('mouseover', mouseOverCB);
+		cell.removeEventListener('touchmove', touchOver);
+	});
+};
+
+const addCellListeners = () => {
+	document.querySelectorAll('td').forEach((cell) => {
+		cell.addEventListener('mouseover', mouseOverCB);
+		cell.addEventListener('touchmove', touchOver);
+	});
+};
+
 generateGrid(gridSize, gridSize, container);
 
 //event listener for cells
-document.querySelectorAll('td').forEach((cell) => {
-	cell.addEventListener('mouseover', mouseOverCB);
-	cell.addEventListener('touchmove', touchOver);
-});
+addCellListeners();
 
 //event listener for title
-document.querySelectorAll('.letter').forEach((cell) => {
-	cell.addEventListener('mouseover', mouseOverCB);
-	cell.addEventListener('touchmove', touchOver);
+document.querySelectorAll('.letter').forEach((letter) => {
+	letter.addEventListener('mouseover', mouseOverCB);
+	letter.addEventListener('touchmove', touchOver);
 });
 
 window.addEventListener('click', (e) => {

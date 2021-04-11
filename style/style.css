@@ -205,10 +205,19 @@ header {
   height: 30px;
 }
 
+#credits {
+  margin-top: 50px;
+}
+
 .option {
   margin-top: 12px;
   font-size: 18px;
   background: black;
   color: wheat;
+}
+
+input[type='radio'] {
+  -webkit-filter: grayscale(1);
+          filter: grayscale(1);
 }
 /*# sourceMappingURL=style.css.map */
