@@ -120,10 +120,11 @@ header {
 
 #menu-header {
   font-size: 60px;
-  color: black;
+  color: white;
   cursor: default;
   font-weight: 900;
   letter-spacing: 5px;
+  background: black;
 }
 
 .hide {
@@ -146,8 +147,14 @@ header {
 
 #menu-options {
   font-weight: bold;
-  width: 50%;
   font-size: 20px;
+  color: white;
+}
+
+#menu-options span {
+  background: black;
+  -webkit-filter: opacity(0.8);
+          filter: opacity(0.8);
 }
 
 #menu-options form {
@@ -174,10 +181,10 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  margin: 20px 40px 0px 40px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 60px 40px 0px 40px;
 }
 
 #select-size {
@@ -193,7 +200,7 @@ header {
 
 #size {
   margin-top: 15px;
-  margin-left: 15px;
+  margin-left: 10px;
   width: 100px;
   height: 30px;
 }
@@ -201,5 +208,7 @@ header {
 .option {
   margin-top: 12px;
   font-size: 18px;
+  background: black;
+  color: wheat;
 }
 /*# sourceMappingURL=style.css.map */

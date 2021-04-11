@@ -80,12 +80,24 @@ const mouseOverCB = (e) => {
 //#touch over function declaration
 const touchOver = (e) => {
 	const touch = e.touches[0];
-	const element = document.elementFromPoint(touch.clientX, touch.clientY);
+	const onTouch = document.elementFromPoint(touch.clientX, touch.clientY);
+	const isCell = e.target.classList.contains('cell');
+	const isTitle = e.target.classList.contains('letter');
+	const isChanged = e.target.classList.contains('changed');
+
 	let bg = element === null ? '' : element.style.backgroundColor;
 
-	if (element !== null && element.classList.contains('cell') && !bg) {
+	if (isTitle && !isChanged) {
+		e.target.style.fontSize = `${randomNum(42, 28)}px`;
+		e.target.classList.add('changed');
+	} else {
+		e.target.style.fontSize = '24px';
+		e.target.classList.remove('changed');
+	}
+
+	if (onTouch && !bg) {
 		element.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
-	} else if (element !== null && element.classList.contains('cell')) {
+	} else if (onTouch && isCell) {
 		let rgb = bg.split('').slice(4, -1).join('').split(', ');
 
 		element.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
