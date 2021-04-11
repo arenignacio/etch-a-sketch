@@ -90,6 +90,7 @@ const touchOver = (e) => {
 	const isCell = target.classList.contains('cell');
 	const isTitle = target.classList.contains('letter');
 	const isChanged = target.classList.contains('changed');
+	const bnwSelected = document.getElementById('option-bnw').checked;
 
 	let bg = target.style.backgroundColor;
 
@@ -102,8 +103,12 @@ const touchOver = (e) => {
 	}
 
 	if (!bg && (isTitle || isCell)) {
-		console.log(target);
-		target.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
+		if (bnwSelected && isCell) {
+			//triggers if black and white is selected
+			target.style.backgroundColor = `hsl(0, 0%, ${randomNum(85, 1)}%)`;
+		} else {
+			target.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
+		}
 	} else if (isCell) {
 		let rgb = bg.split('').slice(4, -1).join('').split(', ');
 
