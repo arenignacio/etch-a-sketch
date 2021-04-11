@@ -144,9 +144,11 @@ const resetGrid = (col, row, node) => {
 const toggleMenu = () => {
 	const menu = document.getElementById('menu');
 	const grid = document.querySelector('.grid-container');
+	const instruction = document.getElementById('instruction');
 
 	menu.classList.toggle('hide');
 	grid.classList.toggle('blur');
+	instruction.classList.toggle('hide');
 };
 
 generateGrid(gridSize, gridSize, container);
