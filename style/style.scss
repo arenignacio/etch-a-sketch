@@ -20,8 +20,17 @@
 
 #body {
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
+
+	&-wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		span {
+			margin-top: 5px;
+		}
+	}
 }
 
 .grid-container {
@@ -152,6 +161,9 @@ header {
 	margin-left: 10px;
 	width: 100px;
 	height: 30px;
+	font-size: 19px;
+	background: hsl(0, 0%, 70%);
+	border: black solid 1px;
 }
 
 #credits {
@@ -167,4 +179,27 @@ header {
 
 input[type='radio'] {
 	filter: grayscale(1);
+}
+
+#size-grp {
+	display: flex;
+	justify-content: center;
+}
+
+#reload-btn {
+	margin-top: 15px;
+	margin-left: 8px;
+	cursor: pointer;
+	&:hover {
+		animation: rotate 2s linear infinite forwards;
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }

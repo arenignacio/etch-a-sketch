@@ -127,6 +127,28 @@ const addCellListeners = () => {
 	});
 };
 
+const removeCells = () => {
+	document.querySelectorAll('tr').forEach((cell) => {
+		cell.remove();
+	});
+};
+
+const resetGrid = (col, row, node) => {
+	removeCells();
+	setTimeout(() => {
+		generateGrid(col, row, node);
+		addCellListeners();
+	}, 500);
+};
+
+const toggleMenu = () => {
+	const menu = document.getElementById('menu');
+	const grid = document.querySelector('.grid-container');
+
+	menu.classList.toggle('hide');
+	grid.classList.toggle('blur');
+};
+
 generateGrid(gridSize, gridSize, container);
 
 //event listener for cells
@@ -143,12 +165,29 @@ window.addEventListener('click', (e) => {
 });
 
 //event listener for logo
-document.getElementById('pen').addEventListener('click', (e) => {
-	const menu = document.getElementById('menu');
-	const grid = document.querySelector('.grid-container');
+document.getElementById('pen').addEventListener('click', toggleMenu);
 
-	menu.classList.toggle('hide');
-	grid.classList.toggle('blur');
+//prevent refresh on form submit
+document.querySelector('form').addEventListener('submit', (e) => {
+	e.preventDefault();
+});
 
-	console.log(grid.classList);
+//listen on reset button
+document.getElementById('reload-btn').addEventListener('click', (e) => {
+	const entry = document.getElementById('size');
+	const size = entry.value;
+
+	if (size > 100 || isNaN(size) || size < 2) {
+		entry.style.outline = 'none';
+		entry.style.borderColor = 'hsl(1, 50%, 50%)';
+		entry.style.boxShadow = '0 0 20px hsl(1, 50%, 50%)';
+	} else {
+		entry.style.outline = 'none';
+		entry.style.border = 'black solid 1px';
+		entry.style.boxShadow = 'none';
+		resetGrid(size, size, container);
+
+		toggleMenu();
+	}
+	console.log(entry);
 });
