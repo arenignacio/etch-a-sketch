@@ -86,27 +86,28 @@ const mouseOverCB = (e) => {
 //#touch over function declaration
 const touchOver = (e) => {
 	const touch = e.touches[0];
-	const onTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-	const isCell = e.target.classList.contains('cell');
-	const isTitle = e.target.classList.contains('letter');
-	const isChanged = e.target.classList.contains('changed');
+	const target = document.elementFromPoint(touch.clientX, touch.clientY);
+	const isCell = target.classList.contains('cell');
+	const isTitle = target.classList.contains('letter');
+	const isChanged = target.classList.contains('changed');
 
-	let bg = element === null ? '' : element.style.backgroundColor;
+	let bg = target.style.backgroundColor;
 
 	if (isTitle && !isChanged) {
-		e.target.style.fontSize = `${randomNum(38, 28)}px`;
-		e.target.classList.add('changed');
-	} else {
-		e.target.style.fontSize = '24px';
-		e.target.classList.remove('changed');
+		target.style.fontSize = `${randomNum(38, 24)}px`;
+		target.classList.add('changed');
+	} else if (isTitle) {
+		target.style.fontSize = '24px';
+		target.classList.remove('changed');
 	}
 
-	if (onTouch && !bg) {
-		element.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
-	} else if (onTouch && isCell) {
+	if (!bg && (isTitle || isCell)) {
+		console.log(target);
+		target.style.backgroundColor = `hsl(${randomNum(360)}, 70%, 50%)`;
+	} else if (isCell) {
 		let rgb = bg.split('').slice(4, -1).join('').split(', ');
 
-		element.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
+		target.style.backgroundColor = `rgb(${rgb[0] * colorModifier}, ${
 			rgb[1] * colorModifier
 		}, ${rgb[2] * colorModifier})`;
 		//e.target.style.backgroundColor
