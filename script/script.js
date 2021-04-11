@@ -94,7 +94,7 @@ const touchOver = (e) => {
 	let bg = element === null ? '' : element.style.backgroundColor;
 
 	if (isTitle && !isChanged) {
-		e.target.style.fontSize = `${randomNum(42, 28)}px`;
+		e.target.style.fontSize = `${randomNum(38, 28)}px`;
 		e.target.classList.add('changed');
 	} else {
 		e.target.style.fontSize = '24px';
