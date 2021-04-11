@@ -168,10 +168,6 @@ document.querySelectorAll('.letter').forEach((letter) => {
 	letter.addEventListener('touchmove', touchOver);
 });
 
-window.addEventListener('click', (e) => {
-	console.log(e.target);
-});
-
 //event listener for logo
 document.getElementById('pen').addEventListener('click', toggleMenu);
 
@@ -194,8 +190,6 @@ document.getElementById('reload-btn').addEventListener('click', (e) => {
 		entry.style.border = 'black solid 1px';
 		entry.style.boxShadow = 'none';
 		resetGrid(size, size, container);
-
 		toggleMenu();
 	}
-	console.log(entry);
 });
